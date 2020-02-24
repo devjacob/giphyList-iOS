@@ -1,3 +1,54 @@
-PODFILE CHECKSUM: 935a9351750f0f53f011c296c73d6f1366746a51
+PODS:
+  - DeepDiff (2.3.1)
+  - Giphy (1.2.2):
+    - DeepDiff
+    - libwebp
+    - PINCache
+  - libwebp (1.1.0):
+    - libwebp/demux (= 1.1.0)
+    - libwebp/mux (= 1.1.0)
+    - libwebp/webp (= 1.1.0)
+  - libwebp/demux (1.1.0):
+    - libwebp/webp
+  - libwebp/mux (1.1.0):
+    - libwebp/demux
+  - libwebp/webp (1.1.0)
+  - PINCache (2.3)
+  - RxCocoa (5.0.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.1)
+  - SwiftLint (0.38.0)
+
+DEPENDENCIES:
+  - Giphy
+  - RxCocoa (~> 5)
+  - RxSwift (~> 5)
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - DeepDiff
+    - Giphy
+    - libwebp
+    - PINCache
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  DeepDiff: e5ae6c50d0321568e4508cec5930b9f10bb293fc
+  Giphy: 0fd5898a9100716fa031e342ec919aca876fb3f3
+  libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
+  PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
+  SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
+
+PODFILE CHECKSUM: 6bc0b37b006a1ce62ed4eeb1ec3befae62858bc3
 
 COCOAPODS: 1.8.3
