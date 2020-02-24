@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import RxSwift
 import UIKit
 
 class BaseViewController: UIViewController {
+    lazy var disposeBag: DisposeBag = DisposeBag()
 }
