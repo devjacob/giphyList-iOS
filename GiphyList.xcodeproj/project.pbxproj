@@ -24,6 +24,7 @@
 		6F20156624034FF000105500 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20156524034FF000105500 /* MainViewController.swift */; };
 		6F20156824034FF700105500 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20156724034FF700105500 /* MainViewModel.swift */; };
 		6F20156C240350B000105500 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F20156B240350B000105500 /* MainViewController.xib */; };
+		6FA695572403EA4500EEDF54 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FA695562403EA4500EEDF54 /* SplashViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		6F20156524034FF000105500 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6F20156724034FF700105500 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		6F20156B240350B000105500 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		6FA695562403EA4500EEDF54 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		B36D1DFCFCABBB40EC6527AF /* Pods_GiphyList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62D206C178B32B8D09666D9 /* Pods_GiphyListTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyListTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A45FCB9183B3E719F5E533 /* Pods-GiphyList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyList.release.xcconfig"; path = "Target Support Files/Pods-GiphyList/Pods-GiphyList.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				6F20156024034C8000105500 /* SplashViewController.swift */,
+				6FA695562403EA4500EEDF54 /* SplashViewController.xib */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				6F20153B240348D900105500 /* LaunchScreen.storyboard in Resources */,
 				6F201538240348D900105500 /* Assets.xcassets in Resources */,
 				6F201533240348D700105500 /* Main.storyboard in Resources */,
+				6FA695572403EA4500EEDF54 /* SplashViewController.xib in Resources */,
 				6F20156C240350B000105500 /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

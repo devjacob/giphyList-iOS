@@ -11,4 +11,14 @@ import UIKit
 
 class BaseViewController: UIViewController {
     lazy var disposeBag: DisposeBag = DisposeBag()
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.modalPresentationStyle = .overFullScreen
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.modalPresentationStyle = .overFullScreen
+    }
 }
