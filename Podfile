@@ -10,7 +10,8 @@ target 'GiphyList' do
   
   pod 'SwiftLint'
   
-  pod 'Alamofire', '~> 5.0'
+  pod 'Alamofire'
+  pod 'RxAlamofire'
 
   target 'GiphyListTests' do
     inherit! :search_paths
