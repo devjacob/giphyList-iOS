@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchHeaderView" customModule="GiphyList" customModuleProvider="target">
+            <connections>
+                <outlet property="gifsButton" destination="vGc-Ed-3oG" id="2SA-K4-5Da"/>
+                <outlet property="stickersButton" destination="D6k-jX-bXt" id="5VP-ez-0p9"/>
+                <outlet property="textButton" destination="CCo-UP-xGi" id="RMn-JX-mh5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="SearchHeaderView" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGc-Ed-3oG">
+                    <rect key="frame" x="0.0" y="0.0" width="138" height="40"/>
+                    <color key="backgroundColor" red="0.45490196078431372" green="0.97647058823529409" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Gifs">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D6k-jX-bXt">
+                    <rect key="frame" x="138" y="0.0" width="138" height="40"/>
+                    <color key="backgroundColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Stickers">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCo-UP-xGi">
+                    <rect key="frame" x="276" y="0.0" width="138" height="40"/>
+                    <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Text">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected" title="Text">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="CCo-UP-xGi" secondAttribute="trailing" id="R8C-sj-ZyI"/>
+                <constraint firstAttribute="bottom" secondItem="D6k-jX-bXt" secondAttribute="bottom" id="Rl6-kq-mu1"/>
+                <constraint firstItem="D6k-jX-bXt" firstAttribute="leading" secondItem="vGc-Ed-3oG" secondAttribute="trailing" id="WIE-lu-alS"/>
+                <constraint firstItem="D6k-jX-bXt" firstAttribute="width" secondItem="vGc-Ed-3oG" secondAttribute="width" id="Zpn-ax-jwL"/>
+                <constraint firstAttribute="bottom" secondItem="vGc-Ed-3oG" secondAttribute="bottom" id="dK5-Uo-HHF"/>
+                <constraint firstItem="CCo-UP-xGi" firstAttribute="width" secondItem="vGc-Ed-3oG" secondAttribute="width" id="e4F-ph-V8b"/>
+                <constraint firstItem="vGc-Ed-3oG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kOM-Na-QgJ"/>
+                <constraint firstItem="CCo-UP-xGi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kWu-Qs-0KS"/>
+                <constraint firstItem="CCo-UP-xGi" firstAttribute="leading" secondItem="D6k-jX-bXt" secondAttribute="trailing" id="kZi-W0-fbr"/>
+                <constraint firstItem="D6k-jX-bXt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mmz-W4-Bcm"/>
+                <constraint firstAttribute="bottom" secondItem="CCo-UP-xGi" secondAttribute="bottom" id="rCi-9C-gEM"/>
+                <constraint firstItem="vGc-Ed-3oG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xO7-WE-hLc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139" y="153"/>
+        </view>
+    </objects>
+</document>

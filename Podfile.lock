@@ -21,7 +21,7 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - RxAlamofire
     - RxCocoa
@@ -39,4 +39,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: caf61b63ed4b44a5a90ba78fe80828b6227fedca
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.7.2
