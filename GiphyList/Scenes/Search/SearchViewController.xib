@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="GiphyList" customModuleProvider="target">
             <connections>
+                <outlet property="searchButton" destination="MRh-wP-eW1" id="5Ya-8U-Q1Z"/>
+                <outlet property="searchTextField" destination="w8C-mI-Cwd" id="bUZ-FF-GeZ"/>
                 <outlet property="tableView" destination="vfj-9a-3Yp" id="N9O-Ve-zhp"/>
                 <outlet property="view" destination="iN0-l3-epB" id="MA5-Y0-ucb"/>
             </connections>
@@ -20,7 +22,7 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vfj-9a-3Yp">
                     <rect key="frame" x="0.0" y="104" width="414" height="758"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="8xp-Pz-lpn"/>
                         <outlet property="delegate" destination="-1" id="0Cu-ql-7dQ"/>
@@ -29,17 +31,19 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RS-0y-nQ7">
                     <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w8C-mI-Cwd">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search GIPHY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w8C-mI-Cwd">
                             <rect key="frame" x="0.0" y="0.0" width="354" height="60"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRh-wP-eW1">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRh-wP-eW1">
                             <rect key="frame" x="354" y="0.0" width="60" height="60"/>
+                            <color key="backgroundColor" red="0.81568627450980391" green="0.20000000000000001" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="oY9-Bl-aOZ"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="search_icon"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -55,7 +59,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vfj-9a-3Yp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="20M-Gf-hi6"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="vfj-9a-3Yp" secondAttribute="bottom" id="V5D-l4-1jx"/>
@@ -69,4 +73,7 @@
             <point key="canvasLocation" x="139" y="153"/>
         </view>
     </objects>
+    <resources>
+        <image name="search_icon" width="16" height="16"/>
+    </resources>
 </document>
