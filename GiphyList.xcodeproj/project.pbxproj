@@ -18,6 +18,10 @@
 		5086161C240A496A00518BE6 /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5086161B240A496A00518BE6 /* SearchResultViewController.xib */; };
 		5086161E240A497400518BE6 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086161D240A497400518BE6 /* SearchResultViewModel.swift */; };
 		50861620240A4F6500518BE6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086161F240A4F6500518BE6 /* UITextField+Extension.swift */; };
+		50861622240A552500518BE6 /* SearchResultListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50861621240A552500518BE6 /* SearchResultListModel.swift */; };
+		50861628240A5FCD00518BE6 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50861627240A5FCD00518BE6 /* SearchBar.swift */; };
+		5086162A240A5FFD00518BE6 /* SearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50861629240A5FFD00518BE6 /* SearchBar.xib */; };
+		5095FA71240AAB8F00BF5B86 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095FA70240AAB8F00BF5B86 /* UICollectionView+Extension.swift */; };
 		6F20152C240348D700105500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20152B240348D700105500 /* AppDelegate.swift */; };
 		6F20152E240348D700105500 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20152D240348D700105500 /* SceneDelegate.swift */; };
 		6F201536240348D700105500 /* GiphyList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F201534240348D700105500 /* GiphyList.xcdatamodeld */; };
@@ -74,6 +78,10 @@
 		5086161B240A496A00518BE6 /* SearchResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
 		5086161D240A497400518BE6 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		5086161F240A4F6500518BE6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		50861621240A552500518BE6 /* SearchResultListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListModel.swift; sourceTree = "<group>"; };
+		50861627240A5FCD00518BE6 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		50861629240A5FFD00518BE6 /* SearchBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBar.xib; sourceTree = "<group>"; };
+		5095FA70240AAB8F00BF5B86 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		6505B808387399311E68A6C7 /* Pods-GiphyListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyListTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyListTests/Pods-GiphyListTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F201528240348D700105500 /* GiphyList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiphyList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F20152B240348D700105500 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +176,15 @@
 				5086161D240A497400518BE6 /* SearchResultViewModel.swift */,
 			);
 			path = "Search Result";
+			sourceTree = "<group>";
+		};
+		50861626240A5FAF00518BE6 /* Search Bar */ = {
+			isa = PBXGroup;
+			children = (
+				50861627240A5FCD00518BE6 /* SearchBar.swift */,
+				50861629240A5FFD00518BE6 /* SearchBar.xib */,
+			);
+			path = "Search Bar";
 			sourceTree = "<group>";
 		};
 		6F20151F240348D700105500 = {
@@ -304,6 +321,7 @@
 			children = (
 				6FA6955C2404B44400EEDF54 /* BaseModel.swift */,
 				50861615240A467500518BE6 /* SearchTextModel.swift */,
+				50861621240A552500518BE6 /* SearchResultListModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,6 +329,7 @@
 		6FFD5CA32406AAB2003685EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				50861626240A5FAF00518BE6 /* Search Bar */,
 				5086160F240A455200518BE6 /* Search */,
 			);
 			path = Views;
@@ -333,6 +352,7 @@
 				6FFD5CAC2406AB42003685EE /* UITableView+Extension.swift */,
 				5061B36C240A358D0090AE50 /* UIColor+Extension.swift */,
 				5086161F240A4F6500518BE6 /* UITextField+Extension.swift */,
+				5095FA70240AAB8F00BF5B86 /* UICollectionView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -460,6 +480,7 @@
 				6FA695572403EA4500EEDF54 /* SplashViewController.xib in Resources */,
 				5086161C240A496A00518BE6 /* SearchResultViewController.xib in Resources */,
 				6FFD5CA82406AADF003685EE /* SearchHeaderView.xib in Resources */,
+				5086162A240A5FFD00518BE6 /* SearchBar.xib in Resources */,
 				6FFD5CA02406A819003685EE /* SearchViewController.xib in Resources */,
 				50861614240A458200518BE6 /* SearchCell.xib in Resources */,
 				6F20156C240350B000105500 /* MainViewController.xib in Resources */,
@@ -596,6 +617,7 @@
 				5086161A240A495100518BE6 /* SearchResultViewController.swift in Sources */,
 				6F20156624034FF000105500 /* MainViewController.swift in Sources */,
 				6FFD5CB12406AC03003685EE /* UIView+Extension.swift in Sources */,
+				50861628240A5FCD00518BE6 /* SearchBar.swift in Sources */,
 				5061B36D240A358D0090AE50 /* UIColor+Extension.swift in Sources */,
 				6FA6955A2404B1BC00EEDF54 /* ApiManager.swift in Sources */,
 				5086161E240A497400518BE6 /* SearchResultViewModel.swift in Sources */,
@@ -604,7 +626,9 @@
 				6FFD5CAF2406ABCD003685EE /* UIView+NibLoadable.swift in Sources */,
 				50861616240A467500518BE6 /* SearchTextModel.swift in Sources */,
 				6F610B212409642E00B9505D /* SearchSectionView.swift in Sources */,
+				50861622240A552500518BE6 /* SearchResultListModel.swift in Sources */,
 				6F20152E240348D700105500 /* SceneDelegate.swift in Sources */,
+				5095FA71240AAB8F00BF5B86 /* UICollectionView+Extension.swift in Sources */,
 				6F201536240348D700105500 /* GiphyList.xcdatamodeld in Sources */,
 				6FFD5CAD2406AB42003685EE /* UITableView+Extension.swift in Sources */,
 				50861612240A457A00518BE6 /* SearchCell.swift in Sources */,

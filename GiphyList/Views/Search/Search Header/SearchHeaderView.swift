@@ -10,8 +10,7 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-enum SearchButtonType {
-    case none
+enum SearchType: String {
     case gifs
     case stickers
     case text
@@ -26,7 +25,7 @@ class SearchHeaderView: UIView, NibLoadable {
 
     private var disposeBag: DisposeBag = DisposeBag()
 
-    var selectButton: SearchButtonType = .gifs
+    var selectButton: SearchType = .gifs
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,12 +56,10 @@ class SearchHeaderView: UIView, NibLoadable {
         }).disposed(by: disposeBag)
     }
 
-    private func changeButtonStatus(selectButton button: SearchButtonType) {
+    private func changeButtonStatus(selectButton button: SearchType) {
         initTabButtons()
         selectButton = button
         switch button {
-        case .none:
-            return
         case .gifs:
             gifsButton.isSelected = true
             gifsButton.backgroundColor = selectButtonColor
@@ -79,5 +76,9 @@ class SearchHeaderView: UIView, NibLoadable {
         gifsButton.isSelected = false
         stickersButton.isSelected = false
         textButton.isSelected = false
+        
+        gifsButton.backgroundColor = UIColor(hex: "")
+        stickersButton.backgroundColor = UIColor(hex: "")
+        textButton.backgroundColor = UIColor(hex: "")
     }
 }

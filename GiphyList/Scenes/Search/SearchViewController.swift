@@ -8,11 +8,10 @@
 import Foundation
 import UIKit
 
-private let headerViewHeight:CGFloat = 40
+private let headerViewHeight: CGFloat = 40
 
 class SearchViewController: BaseViewController {
-    @IBOutlet weak var searchTextField: UITextField!
-    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var searchBar: SearchBar!
     @IBOutlet weak var tableView: UITableView!
 
     var viewModel: SearchViewModel = SearchViewModel()
@@ -21,18 +20,16 @@ class SearchViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        searchTextField.leftRightPaddingPoint([.left, .right], point: 10)
 
         headerView = SearchHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: headerViewHeight))
         tableView.tableHeaderView = headerView
 
-        searchButton.rx.tap.asDriver().filter({ [weak self] _ in
+        searchBar.searchButton.rx.tap.asDriver().filter({ [weak self] _ in
             guard let self = self else { return false }
-            return (self.searchTextField.text?.count ?? 0) > 0
+            return (self.searchBar.searchTextField.text?.count ?? 0) > 0
         }).drive(onNext: { [weak self] _ in
-            guard let self = self, let text = self.searchTextField.text else { return }
-            self.viewModel.showSearchResultViewController(self, text: text)
+            guard let self = self, let text = self.searchBar.searchTextField.text else { return }
+            self.viewModel.showSearchResultViewController(self, text: text, type: self.headerView.selectButton)
         }).disposed(by: disposeBag)
     }
 }
