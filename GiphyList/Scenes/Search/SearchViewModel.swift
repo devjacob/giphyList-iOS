@@ -20,8 +20,7 @@ class SearchViewModel {
 
     func showSearchResultViewController(_ viewController: UIViewController, text: String, type: SearchType) {
         let searchResultViewController = SearchResultViewController(nibName: "SearchResultViewController", bundle: nil)
-        searchResultViewController.viewModel.searchText = text
-        searchResultViewController.viewModel.type = type
+        searchResultViewController.viewModel.data(searchText: text, type: type)
         viewController.present(searchResultViewController, animated: true, completion: nil)
     }
 }

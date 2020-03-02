@@ -14,9 +14,24 @@ class SearchResultViewController: BaseViewController {
 
     var viewModel: SearchResultViewModel = SearchResultViewModel()
 
+    private var headerView: SearchHeaderView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.fetchSearchResult()
+
+        headerView = SearchHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: headerViewHeight))
+
+        collectionView.register(SearchResultCell.self)
+
+        (collectionView?.collectionViewLayout as? FlexibleLayout)?.delegate = self
+
+        viewModel.resultBehaviorSubject.asDriver(onErrorJustReturn: nil).filter({ items -> Bool in
+            items != nil
+        }).drive(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            (self.collectionView?.collectionViewLayout as? FlexibleLayout)?.reloadData()
+            self.collectionView.reloadData()
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -27,9 +42,46 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell else {
+            return UICollectionViewCell()
+        }
+
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let showItemIndex = viewModel.resultItems?.count else { return }
+        if indexPath.row >= (showItemIndex - 8) {
+            viewModel.fetchSearchResult()
+        }
+    }
+
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        switch kind {
+//        case UICollectionView.elementKindSectionHeader:
+//
+//            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath)
+//
+//            return header
+//
+//        default:
+//
+//            print("anything")
+//        }
+//
+//        return UICollectionReusableView()
+//    }
+}
+
+extension SearchResultViewController: FlexibleLayoutDelegate {
+    // 1. Returns the photo height
+    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+        // 계산이 필요
+        print(indexPath.row)
+        guard let widthString = viewModel.resultItems?[indexPath.item].images.original.width, let width = NumberFormatter().number(from: widthString) as? CGFloat else { return 0.0 }
+        guard let heightString = viewModel.resultItems?[indexPath.item].images.original.height, let height = NumberFormatter().number(from: heightString) as? CGFloat else { return 0.0 }
+        let showSizeHeight = (view.frame.size.width / 2) * height / width
+
+        return showSizeHeight
     }
 }

@@ -17,27 +17,35 @@ class SearchResultViewModel {
     var searchText: String = ""
     var type: SearchType = .gifs
 
-    var resultItems: [SearchItemModel]? {
-        didSet {
-            guard let items = resultItems else { return }
-            resultBehaviorSubject.onNext(items)
+    private var isNetWorkConnecting: Bool = false
+    var resultItems: [SearchItemModel]? 
+
+    func fetchSearchResult(limit: Int = 20, offset: Int = 0) {
+        if !isNetWorkConnecting {
+            isNetWorkConnecting = true
+            ApiManager.searchList(type: type, keyword: searchText, limit: limit, offset: offset).response(SearchResultListModel.self, onError: { [weak self] error in
+                guard let self = self else { return }
+                self.errorBehaviorSubject.onNext(error)
+                print(error)
+                self.isNetWorkConnecting = false
+            }, onCompleted: { [weak self] result in
+                guard let self = self else { return }
+                if self.resultItems != nil {
+                    result.data.forEach { item in
+                        self.resultItems?.append(item)
+                    }
+                } else {
+                    self.resultItems = result.data
+                }
+                self.resultBehaviorSubject.onNext(self.resultItems)
+                self.isNetWorkConnecting = false
+            }).disposed(by: disposeBag)
         }
     }
 
-    func fetchSearchResult(limit: Int = 20, offset: Int = 0) {
-        ApiManager.searchList(type: type, keyword: searchText, limit: limit, offset: offset).response(SearchResultListModel.self, onError: { [weak self] error in
-            guard let self = self else { return }
-            self.errorBehaviorSubject.onNext(error)
-            print(error)
-        }, onCompleted: { [weak self] result in
-            guard let self = self else { return }
-            if self.resultItems != nil {
-                result.data.forEach { item in
-                    self.resultItems?.append(item)
-                }
-            } else {
-                self.resultItems = result.data
-            }
-        }).disposed(by: disposeBag)
+    func data(searchText: String, type: SearchType) {
+        self.searchText = searchText
+        self.type = type
+        fetchSearchResult()
     }
 }

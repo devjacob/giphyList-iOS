@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-private let headerViewHeight: CGFloat = 40
+let headerViewHeight: CGFloat = 40
 
 class SearchViewController: BaseViewController {
     @IBOutlet weak var searchBar: SearchBar!

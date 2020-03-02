@@ -12,8 +12,6 @@ target 'GiphyList' do
   
   pod 'Alamofire'
   pod 'RxAlamofire'
-
-  pod 'PinterestLayout'
   
   target 'GiphyListTests' do
     inherit! :search_paths
