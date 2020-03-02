@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Kingfisher
 import UIKit
 
 class SearchResultViewController: BaseViewController {
@@ -45,13 +46,17 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell else {
             return UICollectionViewCell()
         }
+        guard let data = viewModel.resultItems?[indexPath.row] else { return UICollectionViewCell() }
+
+        let url = URL(string: data.images.downsizedMedium.url)
+        cell.imageView.kf.setImage(with: url)
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let showItemIndex = viewModel.resultItems?.count else { return }
-        if indexPath.row >= (showItemIndex - 8) {
+        if indexPath.row >= (showItemIndex - 12) {
             viewModel.fetchSearchResult()
         }
     }
@@ -74,12 +79,11 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
 }
 
 extension SearchResultViewController: FlexibleLayoutDelegate {
-    // 1. Returns the photo height
-    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath) -> CGFloat {
         // 계산이 필요
         print(indexPath.row)
-        guard let widthString = viewModel.resultItems?[indexPath.item].images.original.width, let width = NumberFormatter().number(from: widthString) as? CGFloat else { return 0.0 }
-        guard let heightString = viewModel.resultItems?[indexPath.item].images.original.height, let height = NumberFormatter().number(from: heightString) as? CGFloat else { return 0.0 }
+        guard let widthString = viewModel.resultItems?[indexPath.item].images.downsizedMedium.width, let width = NumberFormatter().number(from: widthString) as? CGFloat else { return 0.0 }
+        guard let heightString = viewModel.resultItems?[indexPath.item].images.downsizedMedium.height, let height = NumberFormatter().number(from: heightString) as? CGFloat else { return 0.0 }
         let showSizeHeight = (view.frame.size.width / 2) * height / width
 
         return showSizeHeight

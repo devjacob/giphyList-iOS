@@ -17,10 +17,12 @@ class SearchResultViewModel {
     var searchText: String = ""
     var type: SearchType = .gifs
 
-    private var isNetWorkConnecting: Bool = false
-    var resultItems: [SearchItemModel]? 
+    var offset: Int = 0
 
-    func fetchSearchResult(limit: Int = 20, offset: Int = 0) {
+    private var isNetWorkConnecting: Bool = false
+    var resultItems: [SearchItemModel]?
+
+    func fetchSearchResult(limit: Int = 20) {
         if !isNetWorkConnecting {
             isNetWorkConnecting = true
             ApiManager.searchList(type: type, keyword: searchText, limit: limit, offset: offset).response(SearchResultListModel.self, onError: { [weak self] error in
@@ -37,6 +39,8 @@ class SearchResultViewModel {
                 } else {
                     self.resultItems = result.data
                 }
+                
+                self.offset = self.resultItems?.count ?? 0
                 self.resultBehaviorSubject.onNext(self.resultItems)
                 self.isNetWorkConnecting = false
             }).disposed(by: disposeBag)
