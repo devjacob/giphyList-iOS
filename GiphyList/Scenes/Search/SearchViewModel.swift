@@ -18,9 +18,9 @@ class SearchViewModel {
     private func fetchPopularSearchText() {
     }
 
-    func showSearchResultViewController(_ viewController: UIViewController, text: String) {
+    func showSearchResultViewController(_ viewController: UIViewController, text: String, type: SearchType) {
         let searchResultViewController = SearchResultViewController(nibName: "SearchResultViewController", bundle: nil)
-        searchResultViewController.viewModel.searchText = text
+        searchResultViewController.viewModel.data(searchText: text, type: type)
         viewController.present(searchResultViewController, animated: true, completion: nil)
     }
 }

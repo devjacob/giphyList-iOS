@@ -7,5 +7,20 @@
 
 import Foundation
 
+enum StatusCode:Int {
+    case success = 200
+}
+
 protocol BaseModel: Codable {
+    var meta: MetaModel { get set }
+}
+ 
+struct MetaModel: Codable {
+    let status: Int
+    let msg, responseID: String
+
+    enum CodingKeys: String, CodingKey {
+        case status, msg
+        case responseID = "response_id"
+    }
 }

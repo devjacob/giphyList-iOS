@@ -17,11 +17,6 @@ private let retryCount: Int = 3
 private let baseDomain: String = "https://api.giphy.com/v1"
 private let apiKey: String = "a6k06zgmJyeNrWAwYRZJsg6EzW45Mlag"
 
-enum SearchType: String {
-    case gif = "gifs"
-    case sticker = "stickers"
-}
-
 struct ApiRequestModel {
     var path: String!
     let method: HTTPMethod!
@@ -38,7 +33,8 @@ enum ApiManager {
     var requestModel: ApiRequestModel {
         switch self {
         case let .searchList(type, keyword, limit, offset):
-            return ApiRequestModel(path: "/\(type.rawValue)/search?q=\(keyword)&limit=\(limit)&offset=\(offset)", method: .get)
+            let encodingString = keyword.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+            return ApiRequestModel(path: "/\(type.rawValue)/search?api_key=\(apiKey)&q=\(encodingString)&limit=\(limit)&offset=\(offset)", method: .get)
         }
     }
 
@@ -75,9 +71,14 @@ extension ApiManager {
     func response<T>(_ type: T.Type, onError: ((Error) -> Void)? = nil, onCompleted: ((T) -> Void)? = nil) -> Disposable where T: BaseModel {
         let disposable = request().subscribe(onNext: { _, data in
             let decoder = JSONDecoder()
-            if let model = try? decoder.decode(type, from: data) {
-                onCompleted?(model)
-            } else {
+            do {
+                let model = try decoder.decode(type, from: data)
+                if model.meta.status == StatusCode.success.rawValue {
+                    onCompleted?(model)
+                } else {
+                }
+            } catch {
+                onError?(error)
             }
 
         }, onError: { error in
