@@ -37,6 +37,11 @@
 		6F20156624034FF000105500 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20156524034FF000105500 /* MainViewController.swift */; };
 		6F20156824034FF700105500 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20156724034FF700105500 /* MainViewModel.swift */; };
 		6F20156C240350B000105500 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F20156B240350B000105500 /* MainViewController.xib */; };
+		6F545C92240DF5E700B1F777 /* FavriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F545C8F240DF5E700B1F777 /* FavriteViewController.swift */; };
+		6F545C93240DF5E700B1F777 /* FavriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F545C90240DF5E700B1F777 /* FavriteViewModel.swift */; };
+		6F545C94240DF5E700B1F777 /* FavriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F545C91240DF5E700B1F777 /* FavriteViewController.xib */; };
+		6F545C9C240DF5F800B1F777 /* FavoriteSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F545C97240DF5F800B1F777 /* FavoriteSectionView.swift */; };
+		6F545C9D240DF5F800B1F777 /* FavoriteSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F545C98240DF5F800B1F777 /* FavoriteSectionView.xib */; };
 		6F610B212409642E00B9505D /* SearchSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F610B202409642E00B9505D /* SearchSectionView.swift */; };
 		6F610B232409643500B9505D /* SearchSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F610B222409643500B9505D /* SearchSectionView.xib */; };
 		6FA695572403EA4500EEDF54 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FA695562403EA4500EEDF54 /* SplashViewController.xib */; };
@@ -107,6 +112,11 @@
 		6F20156524034FF000105500 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6F20156724034FF700105500 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		6F20156B240350B000105500 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		6F545C8F240DF5E700B1F777 /* FavriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavriteViewController.swift; sourceTree = "<group>"; };
+		6F545C90240DF5E700B1F777 /* FavriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavriteViewModel.swift; sourceTree = "<group>"; };
+		6F545C91240DF5E700B1F777 /* FavriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavriteViewController.xib; sourceTree = "<group>"; };
+		6F545C97240DF5F800B1F777 /* FavoriteSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSectionView.swift; sourceTree = "<group>"; };
+		6F545C98240DF5F800B1F777 /* FavoriteSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteSectionView.xib; sourceTree = "<group>"; };
 		6F610B202409642E00B9505D /* SearchSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSectionView.swift; sourceTree = "<group>"; };
 		6F610B222409643500B9505D /* SearchSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSectionView.xib; sourceTree = "<group>"; };
 		6FA695562403EA4500EEDF54 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
@@ -275,6 +285,7 @@
 				50861617240A493500518BE6 /* Search Result */,
 				6F20155F24034C7300105500 /* Splash */,
 				6F20156424034FD800105500 /* Main */,
+				6F545C8E240DF5E700B1F777 /* Favorite */,
 				6F2015692403500700105500 /* Search */,
 			);
 			path = Scenes;
@@ -307,6 +318,33 @@
 				6FFD5CA12406A823003685EE /* SearchViewModel.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		6F545C8E240DF5E700B1F777 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				6F545C8F240DF5E700B1F777 /* FavriteViewController.swift */,
+				6F545C90240DF5E700B1F777 /* FavriteViewModel.swift */,
+				6F545C91240DF5E700B1F777 /* FavriteViewController.xib */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		6F545C95240DF5F800B1F777 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				6F545C96240DF5F800B1F777 /* Favorite Section */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		6F545C96240DF5F800B1F777 /* Favorite Section */ = {
+			isa = PBXGroup;
+			children = (
+				6F545C97240DF5F800B1F777 /* FavoriteSectionView.swift */,
+				6F545C98240DF5F800B1F777 /* FavoriteSectionView.xib */,
+			);
+			path = "Favorite Section";
 			sourceTree = "<group>";
 		};
 		6F610B1F240963B600B9505D /* Search Section */ = {
@@ -353,6 +391,7 @@
 		6FFD5CA32406AAB2003685EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6F545C95240DF5F800B1F777 /* Favorite */,
 				505CCCE4240C0D39004E8F01 /* Search Result */,
 				50861626240A5FAF00518BE6 /* Search Bar */,
 				5086160F240A455200518BE6 /* Search */,
@@ -501,11 +540,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F20153B240348D900105500 /* LaunchScreen.storyboard in Resources */,
+				6F545C9D240DF5F800B1F777 /* FavoriteSectionView.xib in Resources */,
 				6F201538240348D900105500 /* Assets.xcassets in Resources */,
 				6FA695572403EA4500EEDF54 /* SplashViewController.xib in Resources */,
 				5086161C240A496A00518BE6 /* SearchResultViewController.xib in Resources */,
 				6FFD5CA82406AADF003685EE /* SearchHeaderView.xib in Resources */,
 				5086162A240A5FFD00518BE6 /* SearchBar.xib in Resources */,
+				6F545C94240DF5E700B1F777 /* FavriteViewController.xib in Resources */,
 				505CCCE9240C0D59004E8F01 /* SearchResultCell.xib in Resources */,
 				6FFD5CA02406A819003685EE /* SearchViewController.xib in Resources */,
 				50861614240A458200518BE6 /* SearchCell.xib in Resources */,
@@ -646,9 +687,11 @@
 				50861628240A5FCD00518BE6 /* SearchBar.swift in Sources */,
 				5061B36D240A358D0090AE50 /* UIColor+Extension.swift in Sources */,
 				505CCCE7240C0D53004E8F01 /* SearchResultCell.swift in Sources */,
+				6F545C9C240DF5F800B1F777 /* FavoriteSectionView.swift in Sources */,
 				6FA6955A2404B1BC00EEDF54 /* ApiManager.swift in Sources */,
 				5086161E240A497400518BE6 /* SearchResultViewModel.swift in Sources */,
 				6F20152C240348D700105500 /* AppDelegate.swift in Sources */,
+				6F545C93240DF5E700B1F777 /* FavriteViewModel.swift in Sources */,
 				505CCCE3240BE5F8004E8F01 /* FlexibleLayout.swift in Sources */,
 				6FA6955D2404B44400EEDF54 /* BaseModel.swift in Sources */,
 				6FFD5CAF2406ABCD003685EE /* UIView+NibLoadable.swift in Sources */,
@@ -664,6 +707,7 @@
 				6F20156324034CEB00105500 /* BaseViewController.swift in Sources */,
 				50861620240A4F6500518BE6 /* UITextField+Extension.swift in Sources */,
 				6F20156824034FF700105500 /* MainViewModel.swift in Sources */,
+				6F545C92240DF5E700B1F777 /* FavriteViewController.swift in Sources */,
 				6FFD5CA62406AAC6003685EE /* SearchHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
