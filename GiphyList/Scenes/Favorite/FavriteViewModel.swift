@@ -9,10 +9,7 @@ import Foundation
 import RxSwift
 
 class FavoriteViewModel {
-    private var favoriteList: [Any] = Array() {
-        didSet {
-        }
-    }
+    var favoriteList: [SearchItemModel]?
 
     func getFavoriteList() {
     }

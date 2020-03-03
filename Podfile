@@ -12,7 +12,9 @@ target 'GiphyList' do
   
   pod 'Alamofire'
   pod 'RxAlamofire'
-
+  
+  pod 'Kingfisher'
+  
   target 'GiphyListTests' do
     inherit! :search_paths
     # Pods for testing
