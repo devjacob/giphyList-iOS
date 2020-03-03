@@ -12,7 +12,7 @@ class SplashViewController: BaseViewController {
         super.viewDidLoad()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-            let viewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
+            let viewController = MainTabViewController(nibName: "MainTabViewController", bundle: nil)
             self.present(viewController, animated: true, completion: nil)
         }
     }
