@@ -39,7 +39,7 @@ class SearchResultViewModel {
                 } else {
                     self.resultItems = result.data
                 }
-                
+
                 self.offset = self.resultItems?.count ?? 0
                 self.resultBehaviorSubject.onNext(self.resultItems)
                 self.isNetWorkConnecting = false
@@ -51,5 +51,10 @@ class SearchResultViewModel {
         self.searchText = searchText
         self.type = type
         fetchSearchResult()
+    }
+
+    func showDetailViewController(_ viewController: UIViewController, index: Int) {
+        guard let model = resultItems?[index] else { return }
+        
     }
 }

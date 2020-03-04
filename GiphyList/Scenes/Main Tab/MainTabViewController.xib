@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainTabViewController" customModule="GiphyList" customModuleProvider="target">
             <connections>
+                <outlet property="bottomTabView" destination="X8a-eo-pvv" id="DkT-WZ-rCV"/>
+                <outlet property="contentView" destination="DD5-vE-QHi" id="o50-9t-6as"/>
                 <outlet property="view" destination="iN0-l3-epB" id="aot-3A-VbF"/>
             </connections>
         </placeholder>
@@ -31,15 +33,23 @@
                         <constraint firstAttribute="height" constant="60" id="T5G-sP-FUA"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DD5-vE-QHi">
+                    <rect key="frame" x="0.0" y="104" width="414" height="698"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DD5-vE-QHi" secondAttribute="trailing" id="EVA-l4-mI2"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="p3B-9j-zNk" secondAttribute="trailing" id="FCM-fB-IEN"/>
                 <constraint firstItem="p3B-9j-zNk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="OI7-jZ-iin"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="X8a-eo-pvv" secondAttribute="trailing" id="PiG-g0-Ddb"/>
+                <constraint firstItem="DD5-vE-QHi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="SRX-Iz-38a"/>
                 <constraint firstItem="p3B-9j-zNk" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="YJl-1w-wNY"/>
                 <constraint firstItem="X8a-eo-pvv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZRy-85-nrW"/>
+                <constraint firstItem="DD5-vE-QHi" firstAttribute="top" secondItem="p3B-9j-zNk" secondAttribute="bottom" id="aPq-ky-uGM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="X8a-eo-pvv" secondAttribute="bottom" id="c1h-LI-8qV"/>
+                <constraint firstItem="X8a-eo-pvv" firstAttribute="top" secondItem="DD5-vE-QHi" secondAttribute="bottom" id="k4T-hs-Lq8"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="139" y="153"/>

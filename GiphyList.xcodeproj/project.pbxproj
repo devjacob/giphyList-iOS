@@ -46,6 +46,7 @@
 		6F545CA5240DFE9600B1F777 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F545CA4240DFE9600B1F777 /* MainTabViewController.swift */; };
 		6F545CA9240E001D00B1F777 /* BottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F545CA8240E001D00B1F777 /* BottomTabView.swift */; };
 		6F545CAB240E002700B1F777 /* BottomTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F545CAA240E002700B1F777 /* BottomTabView.xib */; };
+		6F545CAD240E153300B1F777 /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F545CAC240E153300B1F777 /* MainTabViewModel.swift */; };
 		6F610B212409642E00B9505D /* SearchSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F610B202409642E00B9505D /* SearchSectionView.swift */; };
 		6F610B232409643500B9505D /* SearchSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F610B222409643500B9505D /* SearchSectionView.xib */; };
 		6FA695572403EA4500EEDF54 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FA695562403EA4500EEDF54 /* SplashViewController.xib */; };
@@ -125,6 +126,7 @@
 		6F545CA4240DFE9600B1F777 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		6F545CA8240E001D00B1F777 /* BottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabView.swift; sourceTree = "<group>"; };
 		6F545CAA240E002700B1F777 /* BottomTabView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomTabView.xib; sourceTree = "<group>"; };
+		6F545CAC240E153300B1F777 /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
 		6F610B202409642E00B9505D /* SearchSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSectionView.swift; sourceTree = "<group>"; };
 		6F610B222409643500B9505D /* SearchSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSectionView.xib; sourceTree = "<group>"; };
 		6FA695562403EA4500EEDF54 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			children = (
 				6F545CA4240DFE9600B1F777 /* MainTabViewController.swift */,
 				6F545CA2240DFE1F00B1F777 /* MainTabViewController.xib */,
+				6F545CAC240E153300B1F777 /* MainTabViewModel.swift */,
 			);
 			path = "Main Tab";
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				6F545CA5240DFE9600B1F777 /* MainTabViewController.swift in Sources */,
 				6F545C92240DF5E700B1F777 /* FavriteViewController.swift in Sources */,
 				6FFD5CA62406AAC6003685EE /* SearchHeaderView.swift in Sources */,
+				6F545CAD240E153300B1F777 /* MainTabViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

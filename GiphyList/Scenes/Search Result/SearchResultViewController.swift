@@ -33,6 +33,14 @@ class SearchResultViewController: BaseViewController {
             (self.collectionView?.collectionViewLayout as? FlexibleLayout)?.reloadData()
             self.collectionView.reloadData()
         }).disposed(by: disposeBag)
+
+        searchBar.searchButton.rx.tap.asDriver().filter({ [weak self] _ in
+            guard let self = self else { return false }
+            return (self.searchBar.searchTextField.text?.count ?? 0) > 0
+        }).drive(onNext: { [weak self] _ in
+            guard let self = self, let text = self.searchBar.searchTextField.text else { return }
+//            self.dismiss(animated: true, completion: nil)
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -59,6 +67,10 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         if indexPath.row >= (showItemIndex - 12) {
             viewModel.fetchSearchResult()
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.showDetailViewController(self, index: indexPath.row)
     }
 
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
