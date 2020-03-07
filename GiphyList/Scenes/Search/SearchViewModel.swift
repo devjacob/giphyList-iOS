@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class SearchViewModel {
+    var coordinator: SearchCoordinator?
+    
     var popularSearchTexts: [SearchTextModel] = Array()
 
     init() {
@@ -18,9 +20,7 @@ class SearchViewModel {
     private func fetchPopularSearchText() {
     }
 
-    func showSearchResultViewController(_ viewController: UIViewController, text: String, type: SearchType) {
-        let searchResultViewController = SearchResultViewController(nibName: "SearchResultViewController", bundle: nil)
-        searchResultViewController.viewModel.data(searchText: text, type: type)
-        viewController.present(searchResultViewController, animated: false, completion: nil)
+    func showSearchResultViewController(text: String, type: SearchType) {
+        coordinator?.showSearchResultViewController(text: text, type: type)
     }
 }

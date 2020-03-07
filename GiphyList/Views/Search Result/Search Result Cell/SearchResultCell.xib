@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="179" height="188"/>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.4549019608" green="0.97647058819999999" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="vfz-FW-i8P" firstAttribute="top" secondItem="l4K-kA-tgu" secondAttribute="top" id="744-2Q-bcE"/>
                     <constraint firstAttribute="trailing" secondItem="vfz-FW-i8P" secondAttribute="trailing" id="FvC-Uo-7s4"/>

@@ -24,8 +24,14 @@ class SearchHeaderView: UIView, NibLoadable {
     @IBOutlet weak var textButton: UIButton!
 
     private var disposeBag: DisposeBag = DisposeBag()
+    
+    var buttonChangeBehaviorSubject:BehaviorSubject<SearchType> = BehaviorSubject(value: .gifs)
 
-    var selectButton: SearchType = .gifs
+    var selectButton: SearchType = .gifs {
+        didSet {
+            
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import RealmSwift
 
 // MARK: - SearchResultModel
 
-struct SearchResultListModel: BaseModel {
+class SearchResultListModel: BaseModel {
     var meta: MetaModel
 
     let data: [SearchItemModel]
@@ -18,7 +19,7 @@ struct SearchResultListModel: BaseModel {
 
 // MARK: - Datum
 
-struct SearchItemModel: Codable {
+class SearchItemModel: Codable {
     let type, id: String
     let url: String
     let slug: String
@@ -53,19 +54,19 @@ struct SearchItemModel: Codable {
 
 // MARK: - Analytics
 
-struct Analytics: Codable {
+class Analytics: Codable {
     let onload, onclick, onsent: Onclick
 }
 
 // MARK: - Onclick
 
-struct Onclick: Codable {
+class Onclick: Codable {
     let url: String
 }
 
 // MARK: - Images
 
-struct Images: Codable {
+class Images: Codable {
     let downsizedLarge, fixedHeightSmallStill: The480_WStill
     let original, fixedHeightDownsampled: FixedHeight
     let downsizedStill, fixedHeightStill, downsizedMedium, downsized: The480_WStill
@@ -110,15 +111,55 @@ struct Images: Codable {
 
 // MARK: - The480_WStill
 
-struct The480_WStill: Codable {
-    let url: String
-    let width, height: String
-    let size: String?
+class The480_WStill: Object, Codable {
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+
+    @objc dynamic var id: Int = 0
+    @objc dynamic var url: String = ""
+    @objc dynamic var width: String = ""
+    @objc dynamic var height: String = ""
+    @objc dynamic var size: String?
+    @objc dynamic var randomRed: Double
+    @objc dynamic var randomGreen: Double
+    @objc dynamic var randomBlue: Double
+
+    enum CodingKeys: String, CodingKey {
+        case url, width, height, size, id
+    }
+
+    required init() {
+        id = 0
+        url = ""
+        width = ""
+        height = ""
+        size = nil
+        randomRed = 0
+        randomBlue = 0
+        randomGreen = 0
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = 0
+        url = try container.decodeIfPresent(String.self, forKey: .url) ?? ""
+        width = try container.decodeIfPresent(String.self, forKey: .width) ?? ""
+        height = try container.decodeIfPresent(String.self, forKey: .height) ?? ""
+        size = try container.decodeIfPresent(String.self, forKey: .size) ?? nil
+        randomRed = drand48()
+        randomBlue = drand48()
+        randomGreen = drand48()
+    }
+
+    func backgroundColor() -> UIColor {
+        return UIColor(red: CGFloat(randomRed), green: CGFloat(randomGreen), blue: CGFloat(randomBlue), alpha: 1.0)
+    }
 }
 
 // MARK: - DownsizedSmall
 
-struct DownsizedSmall: Codable {
+class DownsizedSmall: Codable {
     let height: String
     let mp4: String
     let mp4Size, width: String
@@ -132,7 +173,7 @@ struct DownsizedSmall: Codable {
 
 // MARK: - FixedHeight
 
-struct FixedHeight: Codable {
+class FixedHeight: Codable {
     let height: String
     let mp4: String?
     let mp4Size: String?
@@ -153,7 +194,7 @@ struct FixedHeight: Codable {
 
 // MARK: - Looping
 
-struct Looping: Codable {
+class Looping: Codable {
     let mp4: String
     let mp4Size: String
 
@@ -165,7 +206,7 @@ struct Looping: Codable {
 
 // MARK: - Pagination
 
-struct Pagination: Codable {
+class Pagination: Codable {
     let totalCount, count, offset: Int
 
     enum CodingKeys: String, CodingKey {

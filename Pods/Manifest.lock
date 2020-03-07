@@ -1,8 +1,14 @@
 PODS:
   - Alamofire (4.9.1)
+  - FSPagerView (0.8.3)
   - Kingfisher (5.13.2):
     - Kingfisher/Core (= 5.13.2)
   - Kingfisher/Core (5.13.2)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
   - RxAlamofire (5.1.0):
     - RxAlamofire/Core (= 5.1.0)
   - RxAlamofire/Core (5.1.0):
@@ -18,7 +24,9 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - FSPagerView
   - Kingfisher
+  - RealmSwift
   - RxAlamofire
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
@@ -27,7 +35,10 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - FSPagerView
     - Kingfisher
+    - Realm
+    - RealmSwift
     - RxAlamofire
     - RxCocoa
     - RxRelay
@@ -36,13 +47,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   RxAlamofire: a2d7621de4c23a0c6e7b476b504acc32838ee341
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
 
-PODFILE CHECKSUM: 2bfbcdfbc580f86e340c320d2309aa8b39c5ebc1
+PODFILE CHECKSUM: eb735771b781d12930b8c1ab00c0b3d54820ed7d
 
 COCOAPODS: 1.8.3

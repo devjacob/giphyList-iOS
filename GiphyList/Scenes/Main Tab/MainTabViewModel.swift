@@ -8,4 +8,5 @@
 import Foundation
 
 class MainTabViewModel {
+    var tapType: BottomTabType = .search
 }

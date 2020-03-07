@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="bottomTabView" destination="X8a-eo-pvv" id="DkT-WZ-rCV"/>
                 <outlet property="contentView" destination="DD5-vE-QHi" id="o50-9t-6as"/>
+                <outlet property="navigationView" destination="p3B-9j-zNk" id="0Uz-N6-O5S"/>
                 <outlet property="view" destination="iN0-l3-epB" id="aot-3A-VbF"/>
             </connections>
         </placeholder>
@@ -26,9 +27,9 @@
                         <constraint firstAttribute="height" constant="60" id="q0j-97-li8"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p3B-9j-zNk">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p3B-9j-zNk" customClass="NavigationView" customModule="GiphyList" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="44" width="414" height="60"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="T5G-sP-FUA"/>
                     </constraints>

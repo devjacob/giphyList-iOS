@@ -29,7 +29,7 @@ class SearchViewController: BaseViewController {
             return (self.searchBar.searchTextField.text?.count ?? 0) > 0
         }).drive(onNext: { [weak self] _ in
             guard let self = self, let text = self.searchBar.searchTextField.text else { return }
-            self.viewModel.showSearchResultViewController(self, text: text, type: self.headerView.selectButton)
+            self.viewModel.showSearchResultViewController(text: text, type: self.headerView.selectButton)
         }).disposed(by: disposeBag)
     }
 }

@@ -15,12 +15,8 @@ class SearchResultViewController: BaseViewController {
 
     var viewModel: SearchResultViewModel = SearchResultViewModel()
 
-    private var headerView: SearchHeaderView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        headerView = SearchHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: headerViewHeight))
 
         collectionView.register(SearchResultCell.self)
 
@@ -30,7 +26,6 @@ class SearchResultViewController: BaseViewController {
             items != nil
         }).drive(onNext: { [weak self] _ in
             guard let self = self else { return }
-            (self.collectionView?.collectionViewLayout as? FlexibleLayout)?.reloadData()
             self.collectionView.reloadData()
         }).disposed(by: disposeBag)
 
@@ -39,31 +34,36 @@ class SearchResultViewController: BaseViewController {
             return (self.searchBar.searchTextField.text?.count ?? 0) > 0
         }).drive(onNext: { [weak self] _ in
             guard let self = self, let text = self.searchBar.searchTextField.text else { return }
-//            self.dismiss(animated: true, completion: nil)
+            self.viewModel.showSearchResultViewController(text: text)
         }).disposed(by: disposeBag)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        searchBar.searchTextField.text = viewModel.searchText
     }
 }
 
 extension SearchResultViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let items = viewModel.resultItems else { return 0 }
-        return items.count
+        return viewModel.resultItems.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell else {
             return UICollectionViewCell()
         }
-        guard let data = viewModel.resultItems?[indexPath.row] else { return UICollectionViewCell() }
-
-        let url = URL(string: data.images.downsizedMedium.url)
+        let data = viewModel.resultItems[indexPath.row]
+        let url = URL(string: data.url)
         cell.imageView.kf.setImage(with: url)
+        cell.backgroundColor = data.backgroundColor()
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let showItemIndex = viewModel.resultItems?.count else { return }
+        let showItemIndex = viewModel.resultItems.count
         if indexPath.row >= (showItemIndex - 12) {
             viewModel.fetchSearchResult()
         }
@@ -72,30 +72,15 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.showDetailViewController(self, index: indexPath.row)
     }
-
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        switch kind {
-//        case UICollectionView.elementKindSectionHeader:
-//
-//            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath)
-//
-//            return header
-//
-//        default:
-//
-//            print("anything")
-//        }
-//
-//        return UICollectionReusableView()
-//    }
 }
 
 extension SearchResultViewController: FlexibleLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath) -> CGFloat {
-        // 계산이 필요
-        print(indexPath.row)
-        guard let widthString = viewModel.resultItems?[indexPath.item].images.downsizedMedium.width, let width = NumberFormatter().number(from: widthString) as? CGFloat else { return 0.0 }
-        guard let heightString = viewModel.resultItems?[indexPath.item].images.downsizedMedium.height, let height = NumberFormatter().number(from: heightString) as? CGFloat else { return 0.0 }
+        
+        let widthString = viewModel.resultItems[indexPath.item].width
+        let heightString = viewModel.resultItems[indexPath.item].height
+        guard let width = NumberFormatter().number(from: widthString) as? CGFloat else { return 0.0 }
+        guard let height = NumberFormatter().number(from: heightString) as? CGFloat else { return 0.0 }
         let showSizeHeight = (view.frame.size.width / 2) * height / width
 
         return showSizeHeight

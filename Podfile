@@ -15,6 +15,10 @@ target 'GiphyList' do
   
   pod 'Kingfisher'
   
+  pod 'FSPagerView'
+  
+  pod 'RealmSwift'
+  
   target 'GiphyListTests' do
     inherit! :search_paths
     # Pods for testing
