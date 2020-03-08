@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationView" customModule="GiphyList" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="XUW-aI-IqU" id="2SC-Wo-rBY"/>
+                <outlet property="searchButton" destination="AM4-4v-38u" id="SPr-D2-MFK"/>
+                <outlet property="titleLabel" destination="zkH-mL-shs" id="SwZ-tY-IML"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUW-aI-IqU">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="A5H-E7-MTJ"/>
+                    </constraints>
+                    <state key="normal" image="icTopbarBackArrow"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkH-mL-shs">
+                    <rect key="frame" x="80" y="30" width="254" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AM4-4v-38u">
+                    <rect key="frame" x="354" y="0.0" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="zdu-dx-AKS"/>
+                    </constraints>
+                    <state key="normal" image="icTopbarSearch"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="XUW-aI-IqU" secondAttribute="bottom" id="ARs-nn-ABG"/>
+                <constraint firstItem="zkH-mL-shs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="DKb-7w-tue"/>
+                <constraint firstAttribute="bottom" secondItem="AM4-4v-38u" secondAttribute="bottom" id="E0n-ia-pZ1"/>
+                <constraint firstItem="XUW-aI-IqU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EnX-Bc-MTE"/>
+                <constraint firstItem="XUW-aI-IqU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MLs-Ia-hrl"/>
+                <constraint firstAttribute="trailing" secondItem="AM4-4v-38u" secondAttribute="trailing" id="NHC-rA-UYb"/>
+                <constraint firstItem="zkH-mL-shs" firstAttribute="leading" secondItem="XUW-aI-IqU" secondAttribute="trailing" constant="20" id="cQb-34-c3x"/>
+                <constraint firstItem="AM4-4v-38u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nUz-Fw-Wax"/>
+                <constraint firstItem="AM4-4v-38u" firstAttribute="leading" secondItem="zkH-mL-shs" secondAttribute="trailing" constant="20" id="p0U-B6-bFv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139" y="114"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icTopbarBackArrow" width="60" height="60"/>
+        <image name="icTopbarSearch" width="24" height="24"/>
+    </resources>
+</document>

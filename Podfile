@@ -5,8 +5,20 @@ target 'GiphyList' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for GiphyList
-
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+  
+  pod 'SwiftLint'
+  
+  pod 'Alamofire'
+  pod 'RxAlamofire'
+  
+  pod 'Kingfisher'
+  
+  pod 'FSPagerView'
+  
+  pod 'RealmSwift'
+  
   target 'GiphyListTests' do
     inherit! :search_paths
     # Pods for testing

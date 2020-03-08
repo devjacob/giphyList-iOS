@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchBar" customModule="GiphyList" customModuleProvider="target">
+            <connections>
+                <outlet property="searchButton" destination="f5o-gK-U56" id="ihU-3g-KNe"/>
+                <outlet property="searchTextField" destination="mf4-Y5-eIa" id="RLi-BN-NqL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohw-JA-Qoc">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search GIPHY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mf4-Y5-eIa">
+                    <rect key="frame" x="0.0" y="0.0" width="354" height="60"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5o-gK-U56">
+                    <rect key="frame" x="354" y="0.0" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.81568627449999997" green="0.20000000000000001" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="ofS-lR-vQB"/>
+                    </constraints>
+                    <state key="normal" image="search_icon"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="mf4-Y5-eIa" secondAttribute="bottom" id="4kq-CS-dUd"/>
+                <constraint firstAttribute="bottom" secondItem="f5o-gK-U56" secondAttribute="bottom" id="F8P-0G-CzR"/>
+                <constraint firstItem="f5o-gK-U56" firstAttribute="leading" secondItem="mf4-Y5-eIa" secondAttribute="trailing" id="P38-4A-yUI"/>
+                <constraint firstItem="mf4-Y5-eIa" firstAttribute="leading" secondItem="Ohw-JA-Qoc" secondAttribute="leading" id="Sqq-xI-hwq"/>
+                <constraint firstAttribute="height" constant="60" id="gl7-5Z-wg9"/>
+                <constraint firstItem="mf4-Y5-eIa" firstAttribute="top" secondItem="Ohw-JA-Qoc" secondAttribute="top" id="h5F-nR-gVw"/>
+                <constraint firstAttribute="trailing" secondItem="f5o-gK-U56" secondAttribute="trailing" id="lWd-Kl-EHh"/>
+                <constraint firstItem="f5o-gK-U56" firstAttribute="top" secondItem="Ohw-JA-Qoc" secondAttribute="top" id="oPR-L6-KSd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="slT-FT-2mv"/>
+            <point key="canvasLocation" x="62" y="-503"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="search_icon" width="256" height="256"/>
+    </resources>
+</document>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="GiphyList" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="2RS-0y-nQ7" id="bX8-3U-Kaf"/>
+                <outlet property="tableView" destination="vfj-9a-3Yp" id="N9O-Ve-zhp"/>
+                <outlet property="view" destination="iN0-l3-epB" id="MA5-Y0-ucb"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vfj-9a-3Yp">
+                    <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="8xp-Pz-lpn"/>
+                        <outlet property="delegate" destination="-1" id="0Cu-ql-7dQ"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RS-0y-nQ7" customClass="SearchBar" customModule="GiphyList" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Yqt-iB-HZU"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vfj-9a-3Yp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="20M-Gf-hi6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="vfj-9a-3Yp" secondAttribute="bottom" id="V5D-l4-1jx"/>
+                <constraint firstItem="2RS-0y-nQ7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XDH-t6-FI2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vfj-9a-3Yp" secondAttribute="trailing" id="e1E-uI-qWv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2RS-0y-nQ7" secondAttribute="trailing" id="nrf-LT-Ypf"/>
+                <constraint firstItem="vfj-9a-3Yp" firstAttribute="top" secondItem="2RS-0y-nQ7" secondAttribute="bottom" id="nvv-3g-rvh"/>
+                <constraint firstItem="2RS-0y-nQ7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="v4x-8D-AUD"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="139" y="153"/>
+        </view>
+    </objects>
+</document>
