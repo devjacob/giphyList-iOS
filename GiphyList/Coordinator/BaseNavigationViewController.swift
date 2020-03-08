@@ -9,10 +9,22 @@ import Foundation
 import RxSwift
 import UIKit
 
-typealias ViewControllerType = (isFirst: Bool, viewController: UIViewController?)
+typealias ViewControllerType = (isFirst: Bool, moveType: ViewMoveType, viewController: UIViewController?)
+
+enum ViewMoveType {
+    case tab
+    case push
+    case pop
+}
 
 class BaseNavigationController: UINavigationController, UINavigationControllerDelegate {
     lazy var viewChangeBehaviorSubject: BehaviorSubject<ViewControllerType?> = BehaviorSubject(value: nil)
+
+    var lastViewControllerType: ViewControllerType? {
+        didSet {
+            viewChangeBehaviorSubject.onNext(lastViewControllerType)
+        }
+    }
 
     weak var navigationDelegate: NavigationControllerDelegate?
 
@@ -33,50 +45,22 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         super.pushViewController(viewController, animated: animated)
         if viewControllers.count > 1 {
-            viewChangeBehaviorSubject.onNext((false, viewController))
+            lastViewControllerType = (false, .push, viewController)
         } else {
-            viewChangeBehaviorSubject.onNext((true, viewController))
+            lastViewControllerType = (true, .push, viewController)
         }
     }
 
     override func popViewController(animated: Bool) -> UIViewController? {
         let viewController = super.popViewController(animated: animated)
         if viewControllers.count > 1 {
-            viewChangeBehaviorSubject.onNext((false, viewController))
+            lastViewControllerType = (false, .pop, viewControllers.last)
         } else {
-            viewChangeBehaviorSubject.onNext((true, viewController))
+            lastViewControllerType = (true, .pop, viewControllers.last)
         }
 
         return viewController
     }
-
-//    func navigationController(
-//        _ navigationController: UIKit.UINavigationController,
-//        animationControllerFor operation: UINavigationController.Operation,
-//        from fromVC: UIViewController,
-//        to toVC: UIViewController
-//    ) -> UIViewControllerAnimatedTransitioning? {
-//        var animator: PresentStylePushPopAnimator?
-//        if let vc = fromVC as? RelatedContentViewController,
-//            toVC is TVPlayerViewController {
-//            animator = PresentStylePushPopAnimator(
-//                pushing: false,
-//                dimmedView: vc.dimmedView,
-//                contentView: vc.contentView
-//            )
-//        }
-//
-//        if let vc = toVC as? RelatedContentViewController,
-//            fromVC is TVPlayerViewController {
-//            animator = PresentStylePushPopAnimator(
-//                pushing: true,
-//                dimmedView: vc.dimmedView,
-//                contentView: vc.contentView
-//            )
-//        }
-//
-//        return animator
-//    }
 }
 
 protocol NavigationControllerDelegate: class {

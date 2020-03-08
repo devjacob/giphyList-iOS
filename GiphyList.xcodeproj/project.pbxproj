@@ -38,10 +38,12 @@
 		6F20156124034C8000105500 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20156024034C8000105500 /* SplashViewController.swift */; };
 		6F20156324034CEB00105500 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20156224034CEB00105500 /* BaseViewController.swift */; };
 		6F3113002411FDA3005957E5 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3112FF2411FDA3005957E5 /* RealmManager.swift */; };
-		6F3113032413727B005957E5 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3113022413727B005957E5 /* SearchCoordinator.swift */; };
+		6F3113032413727B005957E5 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3113022413727B005957E5 /* NavigationCoordinator.swift */; };
 		6F31130A24137406005957E5 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F31130924137406005957E5 /* NavigationView.swift */; };
 		6F31130C2413740B005957E5 /* NavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F31130B2413740B005957E5 /* NavigationView.xib */; };
 		6F3113102413935A005957E5 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F31130F2413935A005957E5 /* BaseNavigationViewController.swift */; };
+		6F3113132413F45E005957E5 /* CollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3113122413F45E005957E5 /* CollectionViewHeader.swift */; };
+		6F3113152413F475005957E5 /* CollectionViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F3113142413F475005957E5 /* CollectionViewHeader.xib */; };
 		6F545C92240DF5E700B1F777 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F545C8F240DF5E700B1F777 /* FavoriteViewController.swift */; };
 		6F545C93240DF5E700B1F777 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F545C90240DF5E700B1F777 /* FavoriteViewModel.swift */; };
 		6F545C94240DF5E700B1F777 /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F545C91240DF5E700B1F777 /* FavoriteViewController.xib */; };
@@ -123,10 +125,12 @@
 		6F20156024034C8000105500 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		6F20156224034CEB00105500 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6F3112FF2411FDA3005957E5 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		6F3113022413727B005957E5 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		6F3113022413727B005957E5 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		6F31130924137406005957E5 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		6F31130B2413740B005957E5 /* NavigationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationView.xib; sourceTree = "<group>"; };
 		6F31130F2413935A005957E5 /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
+		6F3113122413F45E005957E5 /* CollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHeader.swift; sourceTree = "<group>"; };
+		6F3113142413F475005957E5 /* CollectionViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewHeader.xib; sourceTree = "<group>"; };
 		6F545C8F240DF5E700B1F777 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		6F545C90240DF5E700B1F777 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		6F545C91240DF5E700B1F777 /* FavoriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
@@ -206,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				50861610240A456900518BE6 /* Search Cell */,
-				6FFD5CA42406AABA003685EE /* Search Header */,
 				6F610B1F240963B600B9505D /* Search Section */,
 			);
 			path = Search;
@@ -345,10 +348,19 @@
 		6F3113012413725F005957E5 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				6F3113022413727B005957E5 /* SearchCoordinator.swift */,
+				6F3113022413727B005957E5 /* NavigationCoordinator.swift */,
 				6F31130F2413935A005957E5 /* BaseNavigationViewController.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		6F3113112413F454005957E5 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				6F3113122413F45E005957E5 /* CollectionViewHeader.swift */,
+				6F3113142413F475005957E5 /* CollectionViewHeader.xib */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		6F545C8E240DF5E700B1F777 /* Favorite */ = {
@@ -451,6 +463,8 @@
 		6FFD5CA32406AAB2003685EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6FFD5CA42406AABA003685EE /* Search Header */,
+				6F3113112413F454005957E5 /* CollectionView */,
 				6F545CA7240E000100B1F777 /* Navigation */,
 				6F545CA6240DFFFB00B1F777 /* Bottom Tab */,
 				6F545C95240DF5F800B1F777 /* Favorite */,
@@ -613,6 +627,7 @@
 				6F545C94240DF5E700B1F777 /* FavoriteViewController.xib in Resources */,
 				505CCCE9240C0D59004E8F01 /* SearchResultCell.xib in Resources */,
 				6F13AEA8240F631B0060F77D /* DetailViewController.xib in Resources */,
+				6F3113152413F475005957E5 /* CollectionViewHeader.xib in Resources */,
 				6FFD5CA02406A819003685EE /* SearchViewController.xib in Resources */,
 				50861614240A458200518BE6 /* SearchCell.xib in Resources */,
 				6F31130C2413740B005957E5 /* NavigationView.xib in Resources */,
@@ -749,10 +764,11 @@
 				6FFD5CA22406A823003685EE /* SearchViewModel.swift in Sources */,
 				6F13AEA6240F63170060F77D /* DetailViewController.swift in Sources */,
 				6FFD5C9E2406A80F003685EE /* SearchViewController.swift in Sources */,
+				6F3113132413F45E005957E5 /* CollectionViewHeader.swift in Sources */,
 				5086161A240A495100518BE6 /* SearchResultViewController.swift in Sources */,
 				6F3113002411FDA3005957E5 /* RealmManager.swift in Sources */,
 				6FFD5CB12406AC03003685EE /* UIView+Extension.swift in Sources */,
-				6F3113032413727B005957E5 /* SearchCoordinator.swift in Sources */,
+				6F3113032413727B005957E5 /* NavigationCoordinator.swift in Sources */,
 				50861628240A5FCD00518BE6 /* SearchBar.swift in Sources */,
 				5061B36D240A358D0090AE50 /* UIColor+Extension.swift in Sources */,
 				505CCCE7240C0D53004E8F01 /* SearchResultCell.swift in Sources */,

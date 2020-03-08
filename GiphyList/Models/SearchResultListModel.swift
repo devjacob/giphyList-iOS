@@ -32,7 +32,7 @@ class SearchItemModel: Codable {
     let importDatetime, trendingDatetime: String
     let images: Images
     let analyticsResponsePayload: String
-    let analytics: Analytics
+    let analytics: Analytics?
 
     enum CodingKeys: String, CodingKey {
         case type, id, url, slug
@@ -67,20 +67,20 @@ class Onclick: Codable {
 // MARK: - Images
 
 class Images: Codable {
-    let downsizedLarge, fixedHeightSmallStill: The480_WStill
+    let downsizedLarge, fixedHeightSmallStill: ImageItemModel
     let original, fixedHeightDownsampled: FixedHeight
-    let downsizedStill, fixedHeightStill, downsizedMedium, downsized: The480_WStill
-    let previewWebp: The480_WStill
+    let downsizedStill, fixedHeightStill, downsizedMedium, downsized: ImageItemModel
+    let previewWebp: ImageItemModel
     let originalMp4: DownsizedSmall
     let fixedHeightSmall, fixedHeight: FixedHeight
     let downsizedSmall, preview: DownsizedSmall
     let fixedWidthDownsampled: FixedHeight
-    let fixedWidthSmallStill: The480_WStill
+    let fixedWidthSmallStill: ImageItemModel
     let fixedWidthSmall: FixedHeight
-    let originalStill, fixedWidthStill: The480_WStill
+    let originalStill, fixedWidthStill: ImageItemModel
     let looping: Looping
     let fixedWidth: FixedHeight
-    let previewGIF, the480WStill: The480_WStill
+    let previewGIF, the480WStill: ImageItemModel
 
     enum CodingKeys: String, CodingKey {
         case downsizedLarge = "downsized_large"
@@ -111,7 +111,7 @@ class Images: Codable {
 
 // MARK: - The480_WStill
 
-class The480_WStill: Object, Codable {
+class ImageItemModel: Object, Codable {
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -124,12 +124,15 @@ class The480_WStill: Object, Codable {
     @objc dynamic var randomRed: Double
     @objc dynamic var randomGreen: Double
     @objc dynamic var randomBlue: Double
+    @objc dynamic var itemID: String?
+    @objc dynamic var isSticker: Int
 
     enum CodingKeys: String, CodingKey {
         case url, width, height, size, id
     }
 
     required init() {
+        itemID = nil
         id = 0
         url = ""
         width = ""
@@ -138,11 +141,14 @@ class The480_WStill: Object, Codable {
         randomRed = 0
         randomBlue = 0
         randomGreen = 0
+        isSticker = 0
     }
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = 0
+        itemID = nil
+        isSticker = 0
         url = try container.decodeIfPresent(String.self, forKey: .url) ?? ""
         width = try container.decodeIfPresent(String.self, forKey: .width) ?? ""
         height = try container.decodeIfPresent(String.self, forKey: .height) ?? ""
@@ -154,6 +160,11 @@ class The480_WStill: Object, Codable {
 
     func backgroundColor() -> UIColor {
         return UIColor(red: CGFloat(randomRed), green: CGFloat(randomGreen), blue: CGFloat(randomBlue), alpha: 1.0)
+    }
+
+    func isFavorite() -> Bool {
+        guard let itemID = itemID else { return false }
+        return RealmManager.shared.isFavoriteItem(itemID)
     }
 }
 

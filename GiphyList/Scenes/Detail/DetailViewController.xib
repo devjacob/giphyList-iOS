@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="collectionViewHeight" destination="faW-F2-nNM" id="wQE-l3-ggd"/>
                 <outlet property="descriptionView" destination="AJ7-zU-Hm3" id="tTJ-Bq-fWh"/>
+                <outlet property="favoriteButton" destination="Q8B-yW-VT1" id="Zt5-xC-Xeg"/>
                 <outlet property="gifsCollectionView" destination="b2q-7l-w8o" id="IZu-sX-JuR"/>
                 <outlet property="view" destination="iN0-l3-epB" id="BhN-sf-r8D"/>
             </connections>

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class SearchViewModel {
-    var coordinator: SearchCoordinator?
+    var coordinator: NavigationCoordinator?
     
     var popularSearchTexts: [SearchTextModel] = Array()
 

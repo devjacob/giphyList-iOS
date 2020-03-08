@@ -29,7 +29,7 @@
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Nky-Fd-lIy">
                     <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <collectionViewLayout key="collectionViewLayout" id="fZL-zU-Xpi" customClass="FlexibleLayout" customModule="GiphyList" customModuleProvider="target"/>
+                    <collectionViewLayout key="collectionViewLayout" id="A92-6w-8zV" customClass="FlexibleLayout" customModule="GiphyList" customModuleProvider="target"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="rkH-JP-Ooy"/>
                         <outlet property="delegate" destination="-1" id="OLZ-J8-sX9"/>

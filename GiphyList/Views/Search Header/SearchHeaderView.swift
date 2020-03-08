@@ -23,13 +23,13 @@ class SearchHeaderView: UIView, NibLoadable {
     @IBOutlet weak var stickersButton: UIButton!
     @IBOutlet weak var textButton: UIButton!
 
-    private var disposeBag: DisposeBag = DisposeBag()
-    
-    var buttonChangeBehaviorSubject:BehaviorSubject<SearchType> = BehaviorSubject(value: .gifs)
+    var disposeBag: DisposeBag = DisposeBag()
+
+    var buttonChangeBehaviorSubject: BehaviorSubject<SearchType> = BehaviorSubject(value: .gifs)
 
     var selectButton: SearchType = .gifs {
         didSet {
-            
+            buttonChangeBehaviorSubject.onNext(selectButton)
         }
     }
 
@@ -46,6 +46,10 @@ class SearchHeaderView: UIView, NibLoadable {
     }
 
     private func initView() {
+        setupAction()
+    }
+
+    func setupAction() {
         gifsButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.changeButtonStatus(selectButton: .gifs)
@@ -82,9 +86,9 @@ class SearchHeaderView: UIView, NibLoadable {
         gifsButton.isSelected = false
         stickersButton.isSelected = false
         textButton.isSelected = false
-        
-        gifsButton.backgroundColor = UIColor(hex: "")
-        stickersButton.backgroundColor = UIColor(hex: "")
-        textButton.backgroundColor = UIColor(hex: "")
+
+        gifsButton.backgroundColor = UIColor(hex: "#414141")
+        stickersButton.backgroundColor = UIColor(hex: "#2E2E2E")
+        textButton.backgroundColor = UIColor(hex: "#212121")
     }
 }

@@ -11,11 +11,11 @@ import RealmSwift
 class RealmManager {
     static let shared = RealmManager()
 
-    func favoriteList() -> [The480_WStill] {
-        var items: [The480_WStill] = Array()
+    func favoriteList() -> [ImageItemModel] {
+        var items: [ImageItemModel] = Array()
         do {
             let realm = try Realm()
-            let objects = realm.objects(The480_WStill.self)
+            let objects = realm.objects(ImageItemModel.self)
             for object in objects {
                 items.append(object)
             }
@@ -25,20 +25,26 @@ class RealmManager {
         return []
     }
 
-    func saveFavoriteItem(_ data: The480_WStill) {
+    func saveFavoriteItem(_ data: ImageItemModel) {
         guard let realm = try? Realm() else { return }
 
         try? realm.write {
-            realm.create(The480_WStill.self,
-                         value: ["id": incrementID(), "url": data.url, "width": data.width, "height": data.height, "randomRed": data.randomRed, "randomGreen": data.randomGreen, "randomBlue": data.randomBlue],
+            realm.create(ImageItemModel.self,
+                         value: ["id": incrementID(), "url": data.url, "width": data.width, "height": data.height, "randomRed": data.randomRed, "randomGreen": data.randomGreen, "randomBlue": data.randomBlue, "itemID": data.itemID ?? "", "isSticker": data.isSticker],
                          update: .all)
         }
     }
 
-    func removeFavoriteItem(_ url: String) -> Bool {
+    func isFavoriteItem(_ itemID: String) -> Bool {
+        guard let realm = try? Realm() else { return false }
+        let objects = realm.objects(ImageItemModel.self).filter("itemID == '\(itemID)'")
+        return objects.count > 0
+    }
+
+    func removeFavoriteItem(_ itemID: String) -> Bool {
         var removed = false
         guard let realm = try? Realm() else { return false }
-        let objects = realm.objects(The480_WStill.self).filter("url == '\(url)'")
+        let objects = realm.objects(ImageItemModel.self).filter("itemID == '\(itemID)'")
         if objects.count > 0 {
             try? realm.write {
                 realm.delete(objects)
@@ -51,6 +57,6 @@ class RealmManager {
 
     private func incrementID() -> Int {
         let realm = try! Realm()
-        return (realm.objects(The480_WStill.self).max(ofProperty: "id") as Int? ?? 0) + 1
+        return (realm.objects(ImageItemModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
     }
 }

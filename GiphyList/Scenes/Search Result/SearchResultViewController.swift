@@ -18,9 +18,15 @@ class SearchResultViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let headerNib = UINib(nibName: "CollectionViewHeader", bundle: nil)
+        collectionView.register(headerNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewHeader")
         collectionView.register(SearchResultCell.self)
 
-        (collectionView?.collectionViewLayout as? FlexibleLayout)?.delegate = self
+        if let layout = collectionView?.collectionViewLayout as? FlexibleLayout {
+            layout.delegate = self
+            layout.headerReferenceSize = CGSize(width: view.frame.width, height: headerViewHeight)
+            layout.sectionHeadersPinToVisibleBounds = true
+        }
 
         viewModel.resultBehaviorSubject.asDriver(onErrorJustReturn: nil).filter({ items -> Bool in
             items != nil
@@ -37,17 +43,21 @@ class SearchResultViewController: BaseViewController {
             self.viewModel.showSearchResultViewController(text: text)
         }).disposed(by: disposeBag)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         searchBar.searchTextField.text = viewModel.searchText
     }
 }
 
-extension SearchResultViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SearchResultViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.resultItems.count
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -57,8 +67,11 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         let data = viewModel.resultItems[indexPath.row]
         let url = URL(string: data.url)
         cell.imageView.kf.setImage(with: url)
-        cell.backgroundColor = data.backgroundColor()
-
+        if data.isSticker == 1 {
+            cell.backgroundColor = .lightGray
+        } else {
+            cell.backgroundColor = data.backgroundColor()
+        }
         return cell
     }
 
@@ -72,11 +85,23 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.showDetailViewController(self, index: indexPath.row)
     }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionViewHeader", for: indexPath) as? CollectionViewHeader {
+                headerView.buttonChangePublishSubject.asDriver(onErrorJustReturn: .gifs).drive(onNext: { [weak self] type in
+                    guard let self = self else { return }
+                    self.viewModel.changeType(type: type)
+                }).disposed(by: headerView.disposeBag)
+                return headerView
+            }
+        }
+        return UICollectionReusableView()
+    }
 }
 
 extension SearchResultViewController: FlexibleLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath) -> CGFloat {
-        
         let widthString = viewModel.resultItems[indexPath.item].width
         let heightString = viewModel.resultItems[indexPath.item].height
         guard let width = NumberFormatter().number(from: widthString) as? CGFloat else { return 0.0 }

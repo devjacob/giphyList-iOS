@@ -9,16 +9,30 @@ import Foundation
 import RealmSwift
 import RxSwift
 
+typealias ItemTypeClosure = ((SearchType) -> Void)
+
 class DetailViewModel {
-    var coordinator: SearchCoordinator!
+    var coordinator: NavigationCoordinator!
 
     var scrollIndexBehaviorSubject: BehaviorSubject<Int> = BehaviorSubject(value: 0)
 
-    var resultItems: [The480_WStill]?
+    var resultItems: [ImageItemModel]?
+
+    var currentItemChangeAction: ItemTypeClosure?
+
+    var currentItemType: SearchType = .gifs {
+        didSet {
+            currentItemChangeAction?(currentItemType)
+        }
+    }
 
     var startIndex: Int = 0 {
         didSet {
             scrollIndexBehaviorSubject.onNext(startIndex)
+            if (resultItems?.count ?? 0) > startIndex {
+                guard let item = resultItems?[startIndex] else { return }
+                currentItemType = (item.isSticker == 1 ? .stickers : .gifs)
+            }
         }
     }
 
@@ -27,7 +41,8 @@ class DetailViewModel {
         if isSave {
             RealmManager.shared.saveFavoriteItem(item)
         } else {
-            print(RealmManager.shared.removeFavoriteItem(item.url))
+            guard let itemID = item.itemID else { return }
+            print(RealmManager.shared.removeFavoriteItem(itemID))
         }
     }
 }

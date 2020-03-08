@@ -10,6 +10,7 @@ import UIKit
 
 class FavoriteViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var emptyView: UIView!
 
     var viewModel: FavoriteViewModel = FavoriteViewModel()
 
@@ -21,7 +22,14 @@ class FavoriteViewController: BaseViewController {
 
         viewModel.favoriteItemsBehaviorSubject.asDriver(onErrorJustReturn: nil).filter { items -> Bool in
             items != nil
-        }.drive(onNext: { _ in
+        }.drive(onNext: { [weak self] items in
+            guard let self = self, let items = items else { return }
+            if items.count > 0 {
+                self.emptyView.isHidden = true
+            } else {
+                self.emptyView.isHidden = false
+            }
+
             self.collectionView.reloadData()
         }).disposed(by: disposeBag)
 
@@ -52,6 +60,11 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
 
         let url = URL(string: data.url)
         cell.imageView.kf.setImage(with: url)
+        if data.isSticker == 1 {
+            cell.backgroundColor = .lightGray
+        } else {
+            cell.backgroundColor = data.backgroundColor()
+        }
 
         return cell
     }

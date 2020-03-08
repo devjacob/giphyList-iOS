@@ -17,6 +17,7 @@ class DetailViewController: BaseViewController {
         }
     }
 
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var descriptionView: UIView!
 
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
@@ -42,7 +43,6 @@ class DetailViewController: BaseViewController {
                 self.gifsCollectionView.scrollToItem(at: index, animated: false)
                 self.gifsCollectionView.isHidden = false
                 self.descriptionView.isHidden = false
-//
                 self.description(index: index)
             }
         }).disposed(by: disposeBag)
@@ -68,6 +68,7 @@ class DetailViewController: BaseViewController {
 
     private func description(index: Int) {
         guard let item = self.viewModel.resultItems?[index] else { return }
+        favoriteButton.isSelected = item.isFavorite()
     }
 }
 
@@ -85,14 +86,20 @@ extension DetailViewController: FSPagerViewDelegate, FSPagerViewDataSource {
 
         cell.imageView?.kf.setImage(with: url)
         cell.imageView?.contentMode = .scaleToFill
-        cell.backgroundColor = data.backgroundColor()
+        if data.isSticker == 1 {
+            cell.backgroundColor = .lightGray
+        } else {
+            cell.backgroundColor = data.backgroundColor()
+        }
 
         return cell
     }
 
     func pagerViewDidEndDecelerating(_ pagerView: FSPagerView) {
-        print(pagerView.currentIndex)
-
         cellHeight(index: pagerView.currentIndex)
+        description(index: pagerView.currentIndex)
+
+        guard let data = viewModel.resultItems?[pagerView.currentIndex] else { return }
+        viewModel.currentItemType = (data.isSticker == 1 ? .stickers : .gifs)
     }
 }

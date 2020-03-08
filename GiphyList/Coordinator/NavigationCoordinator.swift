@@ -8,8 +8,10 @@
 import Foundation
 import RxSwift
 
-class SearchCoordinator {
+class NavigationCoordinator {
     var rootViewController: BaseNavigationController!
+
+    var currentItemChangePublishSubject: PublishSubject<SearchType> = PublishSubject()
 
     init() {
         let viewController = SearchResultViewController(nibName: "SearchResultViewController", bundle: nil)
@@ -21,6 +23,7 @@ class SearchCoordinator {
         rootVC.interactivePopGestureRecognizer?.delegate = nil
         rootVC.navigationDelegate = self
         rootViewController = rootVC
+        rootViewController.lastViewControllerType = (true, .tab, viewController)
     }
 
     init(frame: CGRect, viewController: BaseViewController) {
@@ -32,18 +35,21 @@ class SearchCoordinator {
         rootVC.navigationDelegate = self
         rootViewController = rootVC
         rootViewController.view.frame.size = frame.size
+        rootViewController.lastViewControllerType = (true, .tab, viewController)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
-    func showDetailViewController(items: [The480_WStill], startIndex: Int) {
+    func showDetailViewController(items: [ImageItemModel], startIndex: Int) {
         let detailViewController = DetailViewController(nibName: "DetailViewController", bundle: nil)
         detailViewController.view.frame.size = rootViewController.view.frame.size
         detailViewController.viewModel.coordinator = self
         detailViewController.viewModel.resultItems = items
         detailViewController.viewModel.startIndex = startIndex
+        detailViewController.viewModel.currentItemChangeAction = { type in
+            self.currentItemChangePublishSubject.onNext(type)
+        }
 
         rootViewController.pushViewController(detailViewController, animated: true)
     }
@@ -68,7 +74,7 @@ class SearchCoordinator {
     }
 }
 
-extension SearchCoordinator: NavigationControllerDelegate {
+extension NavigationCoordinator: NavigationControllerDelegate {
     func showViewController(_ currentViewController: UIViewController) {
     }
 }

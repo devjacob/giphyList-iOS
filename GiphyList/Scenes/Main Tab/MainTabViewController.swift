@@ -16,31 +16,11 @@ class MainTabViewController: BaseViewController {
 
     var viewModel: MainTabViewModel = MainTabViewModel()
 
-    var searchCoordinator: SearchCoordinator!
-    var favoriteCoordinator: SearchCoordinator!
+    var searchCoordinator: NavigationCoordinator!
+    var favoriteCoordinator: NavigationCoordinator!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let searchViewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
-        searchCoordinator = SearchCoordinator(frame: contentView.frame, viewController: searchViewController)
-        searchViewController.viewModel.coordinator = searchCoordinator
-        searchCoordinator.rootViewController.viewChangeBehaviorSubject.asDriver(onErrorJustReturn: nil).filter { type -> Bool in
-            type != nil
-        }.drive(onNext: { [weak self] viewControllerType in
-            guard let self = self else { return }
-            self.navigationView.backButton.isHidden = viewControllerType?.isFirst ?? true
-            if let _ = (viewControllerType?.viewController as? DetailViewController) {
-                self.navigationView.searchButton.isHidden = false
-            } else {
-                self.navigationView.searchButton.isHidden = true
-            }
-
-            if let viewController = viewControllerType?.viewController as? SearchResultViewController {
-                let searchText = viewController.viewModel.searchText
-                self.navigationView.titleLabel.text = searchText
-            }
-        }).disposed(by: disposeBag)
 
         navigationView.backButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
             guard let self = self else { return }
@@ -62,16 +42,16 @@ class MainTabViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
 
+        let searchViewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
+        searchCoordinator = NavigationCoordinator(frame: contentView.frame, viewController: searchViewController)
+        searchViewController.viewModel.coordinator = searchCoordinator
+        coordinatorAction(coordinator: searchCoordinator)
+
         let favoriteViewController = FavoriteViewController(nibName: "FavoriteViewController", bundle: nil)
 
-        favoriteCoordinator = SearchCoordinator(frame: contentView.frame, viewController: favoriteViewController)
+        favoriteCoordinator = NavigationCoordinator(frame: contentView.frame, viewController: favoriteViewController)
         favoriteViewController.viewModel.coordinator = favoriteCoordinator
-        favoriteCoordinator.rootViewController.viewChangeBehaviorSubject.asDriver(onErrorJustReturn: nil).filter { type -> Bool in
-            type != nil
-        }.drive(onNext: { [weak self] viewControllerType in
-            guard let self = self else { return }
-            self.navigationView.backButton.isHidden = viewControllerType?.isFirst ?? true
-        }).disposed(by: disposeBag)
+        coordinatorAction(coordinator: favoriteCoordinator)
 
         bottomTabView.buttonTapBehaviorSubject.asDriver(onErrorJustReturn: .search).drive(onNext: { [weak self] type in
             guard let self = self else { return }
@@ -80,15 +60,107 @@ class MainTabViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
 
+    private func coordinatorAction(coordinator: NavigationCoordinator) {
+        coordinator.rootViewController.viewChangeBehaviorSubject.asDriver(onErrorJustReturn: nil).filter { type -> Bool in
+            type != nil
+        }.drive(onNext: { [weak self] viewControllerType in
+            guard let self = self, let viewControllerType = viewControllerType else { return }
+            self.viewChangeStatus(viewControllerType)
+        }).disposed(by: disposeBag)
+
+        coordinator.currentItemChangePublishSubject.asDriver(onErrorJustReturn: .gifs).drive(onNext: { [weak self] type in
+            guard let self = self else { return }
+            var searchText: String = ""
+            switch type {
+            case .gifs:
+                searchText = "GIF"
+            case .stickers:
+                searchText = "Sticker"
+            case .text:
+                searchText = "Sticker"
+            }
+            self.navigationView.titleLabel.text = searchText
+        }).disposed(by: disposeBag)
+    }
+
     private func changeViewController(_ type: BottomTabType) {
         contentView.subviews.forEach { $0.removeFromSuperview() }
+        var lastViewControllerType: ViewControllerType?
+
         switch type {
         case .search:
             contentView.addSubview(searchCoordinator.rootViewController.view)
             searchCoordinator.rootViewController.didMove(toParent: self)
+            lastViewControllerType = searchCoordinator.rootViewController.lastViewControllerType
         case .favorite:
             contentView.addSubview(favoriteCoordinator.rootViewController.view)
             favoriteCoordinator.rootViewController.didMove(toParent: self)
+            lastViewControllerType = favoriteCoordinator.rootViewController.lastViewControllerType
+        }
+
+        viewChangeStatus((lastViewControllerType?.isFirst ?? true, .tab, lastViewControllerType?.viewController))
+    }
+}
+
+extension MainTabViewController {
+    private func viewChangeStatus(_ viewControllerType: ViewControllerType) {
+        navigationView.backButton.isHidden = viewControllerType.isFirst
+        navigationView.searchButton.isHidden = isSearchButtonHidden(viewControllerType.viewController)
+
+        setupNavigationTitle(viewController: viewControllerType.viewController)
+
+        titleAnimation(moveType: viewControllerType.moveType)
+    }
+
+    private func setupNavigationTitle(viewController currentViewController: UIViewController?) {
+        guard let vc = currentViewController else { return }
+        var searchText: String = ""
+        if let viewController = vc as? SearchResultViewController {
+            searchText = viewController.viewModel.searchText
+        } else if let viewController = vc as? DetailViewController {
+            switch viewController.viewModel.currentItemType {
+            case .gifs:
+                searchText = "GIF"
+            case .stickers:
+                searchText = "Sticker"
+            case .text:
+                searchText = "Sticker"
+            }
+
+        } else if vc is SearchViewController {
+            searchText = "검색"
+        } else if vc is FavoriteViewController {
+            searchText = "즐겨찾기"
+        }
+
+        navigationView.titleLabel.text = searchText
+    }
+
+    private func isSearchButtonHidden(_ viewController: UIViewController?) -> Bool {
+        guard let viewController = viewController else { return true }
+        if viewController is DetailViewController {
+            return false
+        } else if viewController is FavoriteViewController {
+            return false
+        } 
+
+        return true
+    }
+
+    private func titleAnimation(moveType: ViewMoveType) {
+        switch moveType {
+        case .pop:
+            navigationView.titleLabel.transform = CGAffineTransform(translationX: 0, y: -50)
+            UIView.animate(withDuration: 0.25) {
+                self.navigationView.titleLabel.transform = .identity
+            }
+        case .push:
+            navigationView.titleLabel.transform = CGAffineTransform(translationX: 0, y: 50)
+            UIView.animate(withDuration: 0.25) {
+                self.navigationView.titleLabel.transform = .identity
+            }
+        case .tab:
+            break
         }
     }
 }

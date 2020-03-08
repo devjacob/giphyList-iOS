@@ -9,11 +9,11 @@ import Foundation
 import RxSwift
 
 class FavoriteViewModel {
-    var coordinator: SearchCoordinator?
+    var coordinator: NavigationCoordinator?
 
-    var favoriteItemsBehaviorSubject: BehaviorSubject<[The480_WStill]?> = BehaviorSubject(value: nil)
+    var favoriteItemsBehaviorSubject: BehaviorSubject<[ImageItemModel]?> = BehaviorSubject(value: nil)
 
-    var favoriteItems: [The480_WStill]? {
+    var favoriteItems: [ImageItemModel]? {
         didSet {
             favoriteItemsBehaviorSubject.onNext(favoriteItems)
         }

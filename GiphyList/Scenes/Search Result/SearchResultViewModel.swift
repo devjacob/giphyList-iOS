@@ -11,9 +11,9 @@ import RxSwift
 class SearchResultViewModel {
     private var disposeBag: DisposeBag = DisposeBag()
 
-    var coordinator: SearchCoordinator?
+    var coordinator: NavigationCoordinator?
 
-    var resultBehaviorSubject: BehaviorSubject<[The480_WStill]?> = BehaviorSubject(value: nil)
+    var resultBehaviorSubject: BehaviorSubject<[ImageItemModel]?> = BehaviorSubject(value: nil)
     var errorBehaviorSubject: BehaviorSubject<Error?> = BehaviorSubject(value: nil)
 
     var searchText: String = "" {
@@ -36,7 +36,7 @@ class SearchResultViewModel {
     private var totalCount: Int = -1
 
     private var isNetWorkConnecting: Bool = false
-    var resultItems: [The480_WStill] = Array()
+    var resultItems: [ImageItemModel] = Array()
 
     func fetchSearchResult(limit: Int = 20) {
         if !isNetWorkConnecting && (totalCount < 0 || offset < totalCount) {
@@ -51,6 +51,8 @@ class SearchResultViewModel {
                 self.totalCount = result.pagination.totalCount
                 result.data.forEach { item in
                     let giphyData = item.images.downsizedMedium
+                    giphyData.itemID = item.id
+                    giphyData.isSticker = item.isSticker
                     self.resultItems.append(giphyData)
                 }
 
@@ -58,6 +60,16 @@ class SearchResultViewModel {
                 self.resultBehaviorSubject.onNext(self.resultItems)
                 self.isNetWorkConnecting = false
             }).disposed(by: disposeBag)
+        }
+    }
+
+    func changeType(type clickType: SearchType) {
+        if type != clickType {
+            type = clickType
+            resultItems.removeAll()
+            totalCount = -1
+            offset = 0
+            fetchSearchResult()
         }
     }
 
