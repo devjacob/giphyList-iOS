@@ -1,10 +1,13 @@
 # giphyList-iOS
-
+```
+giphy 검색 api를 사용한 검색 및 즐겨찾기 iOS 앱
+```
+  
 # 사용 라이브러리
 ## RxSwift 및 RxCocoa
-  ```
-  Reactive Programming을 하기 위해서 사용한 라이브러리
-  ```
+```
+Reactive Programming을 하기 위해서 사용한 라이브러리
+```
 
 ## Alamofire 및 RxAlamofire
 ```
