@@ -81,7 +81,7 @@ class SearchResultViewModel {
 
     func showDetailViewController(_ viewController: UIViewController, index: Int) {
         guard index < resultItems.count else { return }
-        coordinator?.showDetailViewController(items: resultItems, startIndex: index)
+        coordinator?.showDetailViewController(items: resultItems, startIndex: index, searchText: searchText, offset: offset, totalCount: totalCount, type: type)
     }
 
     func showSearchResultViewController(text: String) {

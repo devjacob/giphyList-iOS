@@ -41,12 +41,18 @@ class NavigationCoordinator {
     required init?(coder aDecoder: NSCoder) {
     }
 
-    func showDetailViewController(items: [ImageItemModel], startIndex: Int) {
+    func showDetailViewController(items: [ImageItemModel], startIndex: Int, searchText: String? = nil, offset: Int? = nil, totalCount: Int? = nil, type: SearchType? = nil) {
         let detailViewController = DetailViewController(nibName: "DetailViewController", bundle: nil)
         detailViewController.view.frame.size = rootViewController.view.frame.size
         detailViewController.viewModel.coordinator = self
         detailViewController.viewModel.resultItems = items
         detailViewController.viewModel.startIndex = startIndex
+        
+        detailViewController.viewModel.type = type
+        detailViewController.viewModel.offset = offset
+        detailViewController.viewModel.searchText = searchText
+        detailViewController.viewModel.totalCount = totalCount
+    
         detailViewController.viewModel.currentItemChangeAction = { type in
             self.currentItemChangePublishSubject.onNext(type)
         }

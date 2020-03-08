@@ -46,6 +46,13 @@ class DetailViewController: BaseViewController {
                 self.description(index: index)
             }
         }).disposed(by: disposeBag)
+
+        viewModel.resultBehaviorSubject.asDriver(onErrorJustReturn: nil).filter({ items -> Bool in
+            items != nil
+        }).drive(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.gifsCollectionView.reloadData()
+        }).disposed(by: disposeBag)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -53,7 +60,7 @@ class DetailViewController: BaseViewController {
     }
 
     private func cellHeight(index: Int) {
-        guard let item = self.viewModel.resultItems?[index] else { return }
+        let item = viewModel.resultItems[index]
         guard let imageHeight = NumberFormatter().number(from: item.height) as? CGFloat else { return }
         guard let imageWidth = NumberFormatter().number(from: item.width) as? CGFloat else { return }
 
@@ -67,20 +74,20 @@ class DetailViewController: BaseViewController {
     }
 
     private func description(index: Int) {
-        guard let item = self.viewModel.resultItems?[index] else { return }
+        let item = viewModel.resultItems[index]
         favoriteButton.isSelected = item.isFavorite()
     }
 }
 
 extension DetailViewController: FSPagerViewDelegate, FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        guard let count = viewModel.resultItems?.count else { return 0 }
+        let count = viewModel.resultItems.count
         return count
     }
 
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        guard let data = viewModel.resultItems?[index] else { return FSPagerViewCell() }
+        let data = viewModel.resultItems[index]
 
         let url = URL(string: data.url)
 
@@ -95,11 +102,18 @@ extension DetailViewController: FSPagerViewDelegate, FSPagerViewDataSource {
         return cell
     }
 
+    func pagerView(_ pagerView: FSPagerView, willDisplay cell: FSPagerViewCell, forItemAt index: Int) {
+        let showItemIndex = viewModel.resultItems.count
+        if index >= (showItemIndex - 12) {
+            viewModel.fetchSearchResult()
+        }
+    }
+
     func pagerViewDidEndDecelerating(_ pagerView: FSPagerView) {
         cellHeight(index: pagerView.currentIndex)
         description(index: pagerView.currentIndex)
 
-        guard let data = viewModel.resultItems?[pagerView.currentIndex] else { return }
+        let data = viewModel.resultItems[pagerView.currentIndex]
         viewModel.currentItemType = (data.isSticker == 1 ? .stickers : .gifs)
     }
 }
