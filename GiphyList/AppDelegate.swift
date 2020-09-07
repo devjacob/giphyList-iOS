@@ -9,6 +9,7 @@ import CoreData
 import RealmSwift
 import UIKit
 
+// 테스트
 private let realmSchemaVersion: UInt64 = 1
 
 @UIApplicationMain
