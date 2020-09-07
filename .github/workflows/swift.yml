@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Dependencies
       run: |
-         bundle exec pod install
+          pod install
     - name: Build
       run: swift build -v
     - name: Run tests
