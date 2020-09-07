@@ -25,9 +25,8 @@ jobs:
     - name: Xcode version
       run: /usr/bin/xcodebuild -version
     - name: Dependencies
-      run: |
-          pod install
+      run: pod install
     - name: Run Test
-      run: xcodebuild -workspace GiphyList/GiphyList.xcworkspace -scheme GiphyList -sdk iphoneos clean build 
+      run: xcodebuild -workspace GiphyList.xcworkspace -scheme GiphyList -sdk iphoneos clean build 
     - name: Build App
-      run: xcodebuild -workspace GiphyList/GiphyList.xcworkspace -scheme GiphyList -destination "generic/platform=iOS" -configuration Release build CODE_SIGNING_ALLOWED=NO
+      run: xcodebuild -workspace GiphyList.xcworkspace -scheme GiphyList -destination "generic/platform=iOS" -configuration Release build CODE_SIGNING_ALLOWED=NO
