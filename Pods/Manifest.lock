@@ -33,7 +33,7 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - FSPagerView
     - Kingfisher
@@ -59,4 +59,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: eb735771b781d12930b8c1ab00c0b3d54820ed7d
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.9.3
