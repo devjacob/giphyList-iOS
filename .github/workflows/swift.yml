@@ -1,0 +1,32 @@
+name: Swift
+
+on:
+  push:
+    branches: 
+      - master
+      - release/*
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_11.4.app
+    - name: setup-cocoapods
+      uses: maxim-lobanov/setup-cocoapods@v1.1
+      with:
+        version: 1.9.3
+    - name: Xcode version
+      run: /usr/bin/xcodebuild -version
+    - name: Dependencies
+      run: pod install
+    - name: Run Test
+      run: xcodebuild -workspace GiphyList.xcworkspace -scheme "GiphyList" -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.4' | xcpretty && exit ${PIPESTATUS[0]}
+    - name: Build App
+      run: xcodebuild -workspace GiphyList.xcworkspace -scheme "GiphyList" -destination "generic/platform=iOS" -configuration Release build CODE_SIGNING_ALLOWED=NO
