@@ -16,10 +16,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_11.3.app
+-   - name: Xcode version
+      run: /usr/bin/xcodebuild -version
     - name: Dependencies
       run: |
           pod update
-    - name: Force Xcode 11
-      run: sudo xcode-select -switch /Applications/Xcode_11.3.app
     - name: Build App
       run: xcodebuild -workspace "GiphyList.xcworkspace" -scheme "GiphyList" -destination "generic/platform=iOS" -configuration Release build CODE_SIGNING_ALLOWED=NO
