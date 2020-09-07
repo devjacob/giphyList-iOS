@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_11.3.app
--   - name: Xcode version
+    - name: Xcode version
       run: /usr/bin/xcodebuild -version
     - name: Dependencies
       run: |
