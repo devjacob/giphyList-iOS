@@ -16,8 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - name: CocoaPods Action
-    - uses: ty0x2333/cocoapods-action@0.2.0
+    - name: Dependencies
+      run: |
+         bundle exec pod install
     - name: Build
       run: swift build -v
     - name: Run tests
