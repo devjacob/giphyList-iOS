@@ -10,7 +10,7 @@ on:
       - main
 
 jobs:
-  build:
+  firebase app distribution:
 
     runs-on: macos-latest
 
