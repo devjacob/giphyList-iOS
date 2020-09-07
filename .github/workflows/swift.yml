@@ -6,7 +6,8 @@ on:
       - master
       - release/*
   pull_request:
-    branches: [ master ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -17,7 +18,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Install Dependencies
       run: |
-        cd Example
+        cd giphyList-iOS
         pod install --repo-update
       shell: bash
     - name: Build
